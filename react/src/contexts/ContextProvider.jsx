@@ -26,7 +26,7 @@ export const ContextProvider = ({children}) =>{
            setUser,
            setToken 
         }}>
-
+            {children}
         </StateContext.Provider>
     )
 }
