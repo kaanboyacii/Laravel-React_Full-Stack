@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 
 export default function DefaultLayout() {
@@ -8,6 +8,10 @@ export default function DefaultLayout() {
     if (!token) {
         return <Navigate to="/login" />;
     }
+    const onLogout = ev => {
+        ev.preventDefault()
+
+      }
 
     return (
         <div id="defaultLayout">
@@ -29,11 +33,6 @@ export default function DefaultLayout() {
           <main>
             <Outlet/>
           </main>
-          {notification &&
-            <div className="notification">
-              {notification}
-            </div>
-          }
         </div>
       </div>
     );
