@@ -5,6 +5,7 @@ const StateContext = createContext({
     token:null,
     setUser: () => {},
     setToken: () => {},
+    setNotification: () => {}
 });
 
 export const ContextProvider = ({children}) =>{
@@ -12,7 +13,9 @@ export const ContextProvider = ({children}) =>{
         name:'Jack'
     });
     const [token, _setToken] = useState(null);
+    const [notification, _setNotification] = useState('');
     // localStorage.getItem('ACCESS_TOKEN')
+
     const setToken= (token) => {
         _setToken(token)
         if(token){
@@ -21,12 +24,23 @@ export const ContextProvider = ({children}) =>{
             localStorage.removeItem('ACCESS_TOKEN');
         }
     }
+
+    const setNotification = message => {
+        _setNotification(message);
+    
+        setTimeout(() => {
+          _setNotification('')
+        }, 5000)
+      }
+
     return (
         <StateContext.Provider value={{
            user,
            token,
            setUser,
-           setToken 
+           setToken,
+           notification,
+           setNotification
         }}>
             {children}
         </StateContext.Provider>

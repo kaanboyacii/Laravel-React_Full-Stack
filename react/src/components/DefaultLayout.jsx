@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
 import { Link, Navigate, Outlet } from "react-router-dom";
+import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client.js";
-import { useStateContext } from "../contexts/ContextProvider.jsx";
+import { useEffect } from "react";
 
 export default function DefaultLayout() {
     const { user, token, setUser, setToken, notification } = useStateContext();
@@ -45,6 +45,9 @@ export default function DefaultLayout() {
                 <main>
                     <Outlet />
                 </main>
+                {notification && (
+                    <div className="notification">{notification}</div>
+                )}
             </div>
         </div>
     );
