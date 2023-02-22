@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Login from "./views/Login.jsx";
 import Signup from "./views/Signup.jsx";
 import Users from "./views/Users.jsx";
+import UserForm from "./views/UserForm.jsx";
 import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
@@ -13,8 +14,8 @@ const router = createBrowserRouter([
         element: <DefaultLayout />,
         children: [
             {
-                path:'/',
-                element:<Navigate to="/users" />
+                path: "/",
+                element: <Navigate to="/users" />,
             },
             {
                 path: "/dashboard",
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
             {
                 path: "/users",
                 element: <Users />,
+            },
+            {
+                path: "/users/new",
+                element: <UserForm key="userCreate" />,
+            },
+            {
+                path: "/users/:id",
+                element: <UserForm key="userUpdate" />,
             },
         ],
     },
